@@ -61,7 +61,7 @@ const SignInForm = () => {
                   required
                   value={formData.username}
                   onChange={handleChange}
-                  className="w-full text-sm text-gray-800 border border-gray-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"
+                  className="w-full text-sm text-gray-800 border border-gray-300 pl-4 pr-10 py-3 rounded-lg outline-emtext-emerald-500 -600"
                   placeholder="Enter user name"
                 />
               </div>
@@ -75,7 +75,7 @@ const SignInForm = () => {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full text-sm text-gray-800 border border-gray-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"
+                  className="w-full text-sm text-gray-800 border border-gray-300 pl-4 pr-10 py-3 rounded-lg outline-emtext-emerald-500 -600"
                   placeholder="Enter password"
                 />
               </div>
@@ -89,7 +89,7 @@ const SignInForm = () => {
                   type="checkbox"
                   checked={formData.rememberMe}
                   onChange={handleChange}
-                  className="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 shrink-0 text-emerald-500 -600 focus:ring-emtext-emerald-500 -500 border-gray-300 rounded"
                 />
                 <label htmlFor="remember-me" className="ml-3 block text-sm text-gray-800">
                   Show Password
@@ -97,21 +97,21 @@ const SignInForm = () => {
               </div>
 
               <div className="text-sm">
-                <a href="#" className="text-blue-600 hover:underline font-semibold">
+                <a href="#" className="text-emerald-500 -600 hover:underline font-semibold">
                   Forgot your password?
                 </a>
               </div>
             </div>
 
             <div className="!mt-8">
-              <button type="submit" className="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+              <button type="submit" className="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg bg-emerald-500 text-white hover:bg-emtext-emerald-500 -700 focus:outline-none">
                 Sign in
               </button>
             </div>
 
             <p className="text-sm !mt-8 text-center text-gray-500">
               Don't have an account?
-              <Link to="/auth?page=signup" className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">
+              <Link to="/auth?page=signup" className="text-emerald-500 -600 font-semibold hover:underline ml-1 whitespace-nowrap">
                 Register here
               </Link>
             </p>
@@ -119,8 +119,8 @@ const SignInForm = () => {
         </div>
         <div className="max-md:mt-8">
           <img
-            src="https://readymadeui.com/login-image.webp"
-            className="w-full aspect-[71/50] max-md:w-4/5 mx-auto block object-cover"
+            src="/plant_14086426.png"
+            className="w-full  max-md:w-4/5 mx-auto block object-cover"
             alt="Login"
           />
         </div>

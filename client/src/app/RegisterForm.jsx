@@ -77,7 +77,7 @@ const Register = () => {
                     name="name"
                     type="text"
                     required
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     placeholder="Enter name"
                     value={formData.name}
                     onChange={handleChange}
@@ -90,7 +90,7 @@ const Register = () => {
                     name="email"
                     type="email"
                     required
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     placeholder="Enter email"
                     value={formData.email}
                     onChange={handleChange}
@@ -103,7 +103,7 @@ const Register = () => {
                     name="password"
                     type="password"
                     required
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     placeholder="Enter password"
                     value={formData.password}
                     onChange={handleChange}
@@ -115,7 +115,7 @@ const Register = () => {
                   <input
                     name="phone"
                     type="text"
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     placeholder="Enter phone number"
                     value={formData.phone}
                     onChange={handleChange}
@@ -127,7 +127,7 @@ const Register = () => {
                   <input
                     name="address.street"
                     type="text"
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     placeholder="Street"
                     value={formData.address.street}
                     onChange={handleChange}
@@ -139,7 +139,7 @@ const Register = () => {
                   <input
                     name="address.city"
                     type="text"
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     placeholder="City"
                     value={formData.address.city}
                     onChange={handleChange}
@@ -151,7 +151,7 @@ const Register = () => {
                   <input
                     name="address.country"
                     type="text"
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     placeholder="Country"
                     value={formData.address.country}
                     onChange={handleChange}
@@ -163,7 +163,7 @@ const Register = () => {
                   <input
                     name="address.zip"
                     type="text"
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     placeholder="Zip"
                     value={formData.address.zip}
                     onChange={handleChange}
@@ -174,7 +174,7 @@ const Register = () => {
                   <label className="text-gray-800 text-sm mb-2 block">Role</label>
                   <select
                     name="role"
-                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-blue-600"
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
                     value={formData.role}
                     onChange={handleChange}
                   >
@@ -189,12 +189,12 @@ const Register = () => {
                     id="terms"
                     name="terms"
                     type="checkbox"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-embg-emerald-400 -600 focus:ring-embg-emerald-400 -500 border-gray-300 rounded"
                     checked={formData.terms}
                     onChange={(e) => setFormData({ ...formData, terms: e.target.checked })}
                   />
                   <label htmlFor="terms" className="ml-3 block text-sm text-gray-800">
-                    I agree to the <a href="#" className="text-blue-600 hover:underline">Terms and Conditions</a>
+                    I agree to the <a href="#" className="text-embg-emerald-400 -600 hover:underline">Terms and Conditions</a>
                   </label>
                 </div>
               </div>
@@ -202,7 +202,7 @@ const Register = () => {
                 <button
                 disabled={isSubmitting}
                   type="submit"
-                  className="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                  className="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-lg text-white bg-emerald-400 -600 hover:bg-emerald-400 -700 focus:outline-none"
                 >
                   Sign up
                 </button>
@@ -210,16 +210,16 @@ const Register = () => {
 
               <p className="text-sm !mt-8 text-center text-gray-500">
                 Already have an account?
-                <Link to="/auth?page=signin" className="text-blue-600 font-semibold hover:underline ml-1">Sign in here</Link>
+                <Link to="/auth?page=signin" className="text-embg-emerald-400 -600 font-semibold hover:underline ml-1">Sign in here</Link>
               </p>
             </form>
           </div>
           <div className="max-md:mt-8">
-            <img
-              src="https://readymadeui.com/login-image.webp"
-              className="w-full aspect-[71/50] max-md:w-4/5 mx-auto block object-cover"
-              alt="Register Illustration"
-            />
+          <img
+            src="/plant_14086426.png"
+            className="w-full  max-md:w-4/5 mx-auto block object-cover"
+            alt="Login"
+          />
           </div>
         </div>
       </div>
