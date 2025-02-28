@@ -1,0 +1,7 @@
+/models-pms
+/client/node_modules
+/backend/apiGateway/node_modules
+/backend/services/authService/node_modules
+/backend/services/adminService/node_modules
+/backend/services/memberService/node_modules
+/backend/services/userService/node_modules
