@@ -12,6 +12,8 @@ const App = () => {
   useEffect(() => {
     dispatch(getUser())
   }, []);
+
+  
   const AuthPage = React.lazy(() => import('./app/Auth'));
   const LandingPage = React.lazy(() => import('./app/LandingPage'));
 

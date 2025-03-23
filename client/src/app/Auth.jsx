@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 const Auth = () => {
     const query = new URLSearchParams(useLocation().search);
     const page = query.get("page");
-
+    // page=signin
     const [haveAccount, setHaveAccount] = useState(page === "signin");
 
     useEffect(() => {
