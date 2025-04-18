@@ -3,7 +3,7 @@ import Header from '../../../shared/Header';
 import Drawer from '../../../shared/Drawer';
 import { HomeOutlined, LockClock, TaskAlt, VolunteerActivism } from '@mui/icons-material';
 
-const Layout = () => {
+const Layout = ({children}) => {
     const menuItems = [
         {
             label: 'Home',
@@ -26,6 +26,9 @@ const Layout = () => {
         <>
             <Header />
             <Drawer menuItems={menuItems} />
+            <main className='mt-[80px] ml-[60px] p-5'>
+                {children}
+            </main>
         </>
     );
 }

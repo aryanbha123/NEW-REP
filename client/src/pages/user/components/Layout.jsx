@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../../shared/Header';
 import Drawer from '../../../shared/Drawer';
-import { Beenhere, HomeOutlined, Person, Summarize, VolunteerActivism } from '@mui/icons-material';
+import { Beenhere, HomeOutlined, Person, ShoppingBag, Summarize, VolunteerActivism } from '@mui/icons-material';
 
 const Layout = ({ children }) => {
     const menuItems = [
@@ -24,6 +24,11 @@ const Layout = ({ children }) => {
             label: "Reports",
             icon: <Beenhere />,
             link: "/user/reports",
+        }
+        , {
+            label: "Products",
+            icon: <ShoppingBag />,
+            link: "/user/products",
         }
 
     ]

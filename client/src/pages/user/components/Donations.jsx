@@ -45,11 +45,13 @@ const Donations = () => {
 
     return (
         <>
-            <form className='p-6  gap-4 mx-auto' onSubmit={handleSubmit}>
+            <form className='p-6  flex flex-col w-[430px] gap-4 mx-auto' onSubmit={handleSubmit}>
                 <h1>Make a donation</h1>
-                <TextField sx={{mt:2}} required label='Donor ID' fullWidth variant='standard' value={donation.donorId} disabled />
-
-                <TextField
+                {/* <TextField sx={{mt:2}} required label='Donor ID' fullWidth variant='standard' value={donation.donorId} disabled /> */}
+                <div class="w-full max-w-sm min-w-[200px]">
+                <input required value={donation.donorId} disabled className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Type here..." /> 
+                </div>
+                {/* <TextField
                     required
                     sx={{
                         mt: 2
@@ -65,9 +67,11 @@ const Donations = () => {
                     <MenuItem value='seed'>Seed</MenuItem>
                     <MenuItem value='plant'>Plant</MenuItem>
                     <MenuItem value='other'>Other</MenuItem>
-                </TextField>
-
-                <TextField
+                </TextField> */}
+                <input required  label='Item Name'
+                    name='itemName' value={donation.itemName} onChange={handleChange}  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Item Name" /> 
+               
+                {/* <TextField
                     required
                     label='Item Name'
                     name='itemName'
@@ -76,10 +80,10 @@ const Donations = () => {
                     fullWidth
                     variant='standard'
                     sx={{ mt: 2 }}
-                />
-                <TextField
+                /> */}
+                {/* <TextField
                     required
-                    label='Quantity'
+                    placeholder='Quantity'
                     name='quantity'
                     type='number'
                     value={donation.quantity}
@@ -88,8 +92,12 @@ const Donations = () => {
                     variant='standard'
                     sx={{ mt: 2 }}
                     inputProps={{ min: 1 }}
-                />
-                <TextField
+                /> */}
+                 <input required   placeholder='Quantity'
+                    name='quantity'
+                    type='number' value={donation.quantity} onChange={handleChange}  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" /> 
+               
+                {/* <TextField
                     label='Expiry Date'
                     required
                     name='expiryDate'
@@ -100,7 +108,29 @@ const Donations = () => {
                     variant='standard'
                     sx={{ mt: 2 }}
                     InputLabelProps={{ shrink: true }}
-                />
+                /> */}
+                 <input required 
+                 label='Expiry Date'
+                 name='expiryDate'
+                 type='date'
+                 value={donation.expiryDate} onChange={handleChange}  className="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" /> 
+               
+
+               <select name='priority'
+                    value={donation.priority}
+                    onChange={handleChange} className='w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow '>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+               </select>
+
+               <select  name='donationType'
+                    value={donation.donationType}
+                    onChange={handleChange} className='w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow '>
+                        <option value="seed">Seed</option>
+                        <option value="plant">Plant</option>
+                        <option value="other">Other</option>
+               </select>
 {/* 
                 <TextField
                     select
@@ -122,7 +152,6 @@ const Donations = () => {
                     color='primary'
                     fullWidth
                     type='submit'
-                    sx={{ mt: 4 }}
                     startIcon={loading ? <CircularProgress size={20} color='inherit' /> : <CreditCard />}
                     disabled={loading}
                 >

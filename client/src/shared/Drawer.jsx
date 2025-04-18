@@ -13,9 +13,11 @@ const Drawer = ({menuItems}) => {
   
     return (
         <>
-            <aside onMouseEnter={() => { setShowMenu(true) }} onMouseLeave={() => { setShowMenu(false) }} className={`z-50 h-screen w-[270px] left-0 fixed top-0 transition-all duration-200 ${!showMenu ? '-translate-x-[210px]' : 'translate-x-0'} border-r-[1px] border-gray-200 bg-white`}>
-                <div className='flex justify-center  my-10 gap-5' >
-                    <span className="fixed right-6 top-5  ">
+
+            {/* <aside onMouseEnter={() => { setShowMenu(true) }} onMouseLeave={() => { setShowMenu(false) }} className={`z-50 h-screen w-[270px] left-0 fixed top-0 transition-all duration-200 ${!showMenu ? '-translate-x-[210px]' : 'translate-x-0'} border-r-[1px] border-gray-200 bg-white`}> */}
+            <aside onMouseEnter={() => { setShowMenu(true) }} onMouseLeave={() => { setShowMenu(false) }} className={`z-40 h-[calc(100vh-70px)] top-[71px]   fixed transition-all duration-200 ${showMenu ? ' w-[270px]' : 'w-[70px] '} border-r-[1px] left-0 border-gray-200 bg-white`}>
+                {/* <div className='flex justify-center  my-10 gap-5' > */}
+                    {/* <span className="fixed right-6 top-5  ">
                         {
                             !showMenu ?
                                 <ShortText /> : <><ArrowRight /></>
@@ -34,18 +36,19 @@ const Drawer = ({menuItems}) => {
                                 </p>
                                 <p className="text-xs text-center">{user.email}</p>
                             </>
-                        }
-                    </div>
-                </div>
+                        } */}
+                    {/* </div> */}
+                {/* </div> */}
                 <ul>
                     {
                         menuItems.map((item, i) => (
-                            <Link to={item.link} className={`flex gap-4 ${showMenu ? '' : 'justify-end'} py-4 cursor-pointer hover:bg-gray-100 bg-gray-50 mx-3 px-3 rounded-3xl my-4 ${showMenu ? '' : ''} `} key={i}>
+                            <Link to={item.link} className={`flex gap-4 ${showMenu ? '' : 'justify-end'} py-4 cursor-pointer  hover:bg-gray-600 bg-gray-700 text-white mx-3 px-3 rounded-3xl my-4 ${showMenu ? '' : ''} `} key={i}>
                                 <span className='text-end' >{item.icon}</span>
-                                <span className={`${showMenu ? '' : 'hidden '}`} >{item.label}</span>
+                                <span className={`text-nowrap ${showMenu ? '' : 'hidden '}`} >{item.label}</span>
                             </Link>
                         ))
                     }
+                    <li></li>
                 </ul>
             </aside>
 

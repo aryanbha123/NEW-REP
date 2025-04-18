@@ -23,9 +23,12 @@ const App = () => {
   const UserEvents = React.lazy(() => import('./pages/user/UpcomingEvents'))
   const UserDonations = React.lazy(() => import('./pages/user/DonationPage'));
   const UserReports = React.lazy(() => import('./pages/user/ReportsPage'));
+  const UserProducts = React.lazy(() => import('./pages/user/Products'))
   // Member Routes Components
   const MemberLayout = React.lazy(() => import('./pages/member/components/Layout'));
-
+  const MenmberTasks = React.lazy(()=> import('./pages/member/Task'));
+  const MemberDonation = React.lazy(()=>import('./pages/member/DonationHistory'))
+  const MemberDashboard = React.lazy(()=>import('./pages/member/DashBoard'))
   // Admin Route
   const AdminLayout = React.lazy(() => import('./pages/admin/components/Layout'));
   const AdminDashboard = React.lazy(() => import('./pages/admin/Dashboard'));
@@ -47,10 +50,14 @@ const App = () => {
               <Route path='events' element={<UserLayout><UserEvents/></UserLayout>} />
               <Route path='donations' element={<UserLayout><UserDonations/></UserLayout>} />
               <Route path='reports' element={<UserLayout><UserReports/></UserLayout>} />
+              <Route path='products' element={<UserLayout><UserProducts/></UserLayout>}/>
+              <Route path='checkout' element={<UserLayout><UserProducts/></UserLayout>}/>
             </Route>
             {/* Member Routes */}
             <Route path='/member' element={<RoleRoutes requiredRole={"member"} />}>
-              <Route index element={<MemberLayout></MemberLayout>} />
+              <Route index element={<MemberLayout><MemberDashboard/></MemberLayout>} />
+              <Route path='tasks' element={<MemberLayout><MenmberTasks/></MemberLayout>} />
+              <Route path='donations' element={<MemberLayout>  <MemberDonation/></MemberLayout>} />
             </Route>
             {/* Admin Routes */}
             <Route path='/admin' element={<RoleRoutes requiredRole={"admin"} />}>

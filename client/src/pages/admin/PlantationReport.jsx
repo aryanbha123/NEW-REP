@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
-  Button, Select, MenuItem, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Typography
+  Button, Select, MenuItem, TextField, Dialog, DialogActions, DialogContent,
+  DialogTitle, Typography, Grid
 } from "@mui/material";
 
 const API_BASE_URL = "http://localhost:5000/admin"; // Change according to backend
@@ -10,9 +11,9 @@ const API_BASE_URL = "http://localhost:5000/admin"; // Change according to backe
 const AdminDashboard = () => {
   const [reports, setReports] = useState([]);
   const [selectedReport, setSelectedReport] = useState(null);
-  const [newStatus, setNewStatus] = useState("");
   const [adminAction, setAdminAction] = useState("");
   const [openActionDialog, setOpenActionDialog] = useState(false);
+  const [openInfoDialog, setOpenInfoDialog] = useState(false);
 
   useEffect(() => {
     fetchReports();
@@ -45,6 +46,11 @@ const AdminDashboard = () => {
   const openActionDialogHandler = (report) => {
     setSelectedReport(report);
     setOpenActionDialog(true);
+  };
+
+  const openInfoDialogHandler = (report) => {
+    setSelectedReport(report);
+    setOpenInfoDialog(true);
   };
 
   const handleAdminAction = async () => {
@@ -93,12 +99,18 @@ const AdminDashboard = () => {
                     <MenuItem value="pending">Pending</MenuItem>
                     <MenuItem value="under_review">Under Review</MenuItem>
                     <MenuItem value="action_taken">Action Taken</MenuItem>
-                    {/* <MenuItem value="resolved">Resolved</MenuItem>
-                    <MenuItem value="rejected">Rejected</MenuItem> */}
                   </Select>
                 </TableCell>
                 <TableCell>
                   <Button variant="contained" onClick={() => openActionDialogHandler(report)}>Take Action</Button>
+                  <Button
+                    variant="outlined"
+                    color="info"
+                    style={{ margin: "10px" }}
+                    onClick={() => openInfoDialogHandler(report)}
+                  >
+                    Info
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -122,6 +134,31 @@ const AdminDashboard = () => {
         <DialogActions>
           <Button onClick={() => setOpenActionDialog(false)}>Cancel</Button>
           <Button variant="contained" color="primary" onClick={handleAdminAction}>Submit</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Info Dialog */}
+      <Dialog open={openInfoDialog} onClose={() => setOpenInfoDialog(false)}>
+        <DialogTitle>Supporting Images</DialogTitle>
+        <DialogContent>
+          {selectedReport?.supportingImages?.length > 0 ? (
+            <Grid container spacing={2}>
+              {selectedReport.supportingImages.map((image, index) => (
+                <Grid item xs={6} key={index}>
+                  <img
+                    src={image.path}
+                    alt={`Supporting ${index + 1}`}
+                    style={{ width: "100%", borderRadius: "5px" }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Typography>No supporting images available.</Typography>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenInfoDialog(false)}>Close</Button>
         </DialogActions>
       </Dialog>
     </div>

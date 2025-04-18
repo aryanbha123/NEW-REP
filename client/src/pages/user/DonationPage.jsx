@@ -42,9 +42,11 @@ const DonationPage = () => {
             case "pending":
                 return 1;
             case "approved":
-                return 2;
-            case "rejected":
                 return 3;
+            case "assigned":
+                return 4;
+            case "rejected":
+                return 4;
             default:
                 return 0; // Initiated
         }
@@ -56,57 +58,52 @@ const DonationPage = () => {
                 Donation History
             </Typography>
 
-            {donations.length > 0 ? (
-                donations.map((donation, index) => {
-                    // Skip donations with money type and "pending" payment status
-                    if (donation.donationType === "money" && donation.paymentStatus === 'pending') return;
+            {donations.map((donation, index) => {
+                const isMoneyDonation = donation.donationType === "money";
+                if (isMoneyDonation && donation.paymentStatus == "pending") return;
+                // Define steps based on donation type
+                const statusSteps = isMoneyDonation
+                    ? ["Initiated", "Pending", "Success"]
+                    : ["Initiated", "Pending", "Approved" , "Assigned", "Rejected"];
 
-                    // Define the status steps dynamically based on donation type
-                    const statusSteps = donation.donationType === "money"
-                        ? ["Initiated", "Pending", "Success", "Failed"]
-                        : ["Initiated", "Pending", "Approved", "Rejected"];
+                // Filter steps so that only one final step (either "Approved" OR "Rejected") is included
+                const filteredSteps = statusSteps.filter((label, _, arr) => {
+                    if (donation.status == "rejected" && label == "Assigned") return false; // Remove Approved if Rejected exists
+                    if (donation.status == "rejected" && label == "Approved") return false; // Remove Approved if Rejected exists
+                    if((donation.status == "approved" || donation.status == "assigned") && label=="Rejected")   return false;
+        
+                    return true;
+                });
 
-                    return (
-                        <Paper key={index} sx={{ p: 2, mb: 2, borderRadius: 2, boxShadow: 3 }}>
-                            <p className="text-md">
-                                {donation.donationType === "money"
-                                    ? `Money Donation - ₹${donation.amount}`
-                                    : `${donation.itemName} - ${donation.quantity}`}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                                Priority: <>{donation.priority}</>
-                            </p>
-                            <p className="text-sm text-gray-600">
-                                Status: <>{donation.status.toUpperCase()}</>
-                            </p>
+                return (
+                    <Paper key={index} sx={{ p: 2, mb: 2, borderRadius: 2, boxShadow: 3 }}>
+                        <p className="text-md">
+                            {isMoneyDonation
+                                ? `Money Donation - ₹${donation.amount}`
+                                : `${donation.itemName} - ${donation.quantity}`}
+                        </p>
+                        <p className="text-sm text-gray-600">Priority: {donation.priority}</p>
+                        <p className="text-sm text-gray-600">Status: {donation.status.toUpperCase()}</p>
 
-                            {/* Order tracking stepper */}
-                            <Stepper activeStep={
-                                donation.donationType === "money"
+                        {/* Stepper */}
+                        <Stepper
+                            activeStep={
+                                isMoneyDonation
                                     ? getMoneyStepIndex(donation.paymentStatus)
                                     : getOtherDonationStepIndex(donation.status)
-                            } alternativeLabel>
-                                {statusSteps.map((label, index) => {
-                                    return (
-                                        <Step key={index}>
-                                            <StepLabel>{label}</StepLabel>
-                                        </Step>
-                                    )
-                                })}
-                            </Stepper>
+                            }
+                            alternativeLabel
+                        >
+                            {filteredSteps.map((label, i) => (
+                                <Step key={i}>
+                                    <StepLabel>{label}</StepLabel>
+                                </Step>
+                            ))}
+                        </Stepper>
+                    </Paper>
+                );
+            })}
 
-                            {/* Show Razorpay Transaction ID if it's a money donation */}
-                            {donation.donationType === "money" && donation.transactionId && (
-                                <Typography sx={{ fontSize: 14, mt: 2, color: "green" }}>
-                                    Transaction ID: {donation.transactionId}
-                                </Typography>
-                            )}
-                        </Paper>
-                    );
-                })
-            ) : (
-                <Typography>No donations found.</Typography>
-            )}
         </Box>
     );
 };

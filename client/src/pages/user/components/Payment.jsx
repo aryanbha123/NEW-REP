@@ -103,13 +103,12 @@ const Payment = () => {
     }, [amount]);
 
     return (
-        <div>
+        <div className="flex w-[480px] py-20  flex-col justify-end">
             <h2 className=" mx-8 text-start mt-5">Enter Donation Amount</h2>
-
             {/* Quick Suggestion Buttons */}
-            <div className="mx-8 flex gap-2 -mb-4 mt-2 flex-col-reverse" >
-                <div style={{ display: "flex", gap: 10, justifyContent: "center", marginBottom: 10 }}>
-                    {[100, 200, 500, 2000, 10000].map((amt) => (
+            <div className="mx-8 flex gap-2  flex-col-reverse" >
+                <div style={{ display: "flex", gap: 10, justifyContent: "space-evenly" }}>
+                    {[100, 200, 500, 10000].map((amt) => (
                         <button
                             key={amt}
                             onClick={() => setAmount(amt)}
