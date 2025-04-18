@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import taskRoutes from "./routes/taskRoutes.js";
 import morgan from "morgan";
+import taskMembers from './routes/memberTasks.js';
 import { dbUrl } from "models-pms";
 
 dotenv.config();
@@ -20,7 +21,7 @@ mongoose
 
 // Routes
 app.use("/tasks", taskRoutes);
-
+app.use("/" , taskMembers);
 // Start Server
 const PORT = process.env.PORT || 5005;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

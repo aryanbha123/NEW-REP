@@ -18,6 +18,7 @@ app.use("/api/auth", createProxyMiddleware({ target: "http://localhost:5002", ch
 app.use("/user", createProxyMiddleware({ target: "http://localhost:5003", changeOrigin: true }));
 app.use("/admin", createProxyMiddleware({ target: "http://localhost:5004", changeOrigin: true }));
 app.use("/member", createProxyMiddleware({ target: "http://localhost:5005", changeOrigin: true }));
+app.use("/mail", createProxyMiddleware({ target: "http://localhost:5007", changeOrigin: true }));
 
 // Default Route
 app.get("/", (req, res) => {
