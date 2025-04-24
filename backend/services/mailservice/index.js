@@ -2,6 +2,7 @@ import express from 'express';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
+
 dotenv.config();
 
 const app = express();
@@ -27,8 +28,10 @@ const mailCode = (i) => {
     }else if(i == 4){
         return { subject: "Enrollment Done", message: "thanks for enrolling in event." };
     } else if (i == 3) {
-        return { subject: "Admin Notification", message: "Admin has been notified for the task." };
-    } else {
+        return { subject: "Task Updated", message: "Admin has been notified for the task." };
+    } else if ( i == 4) {
+        return { subject : "User has been allocated a taskk" , message: "Admin has assigned you a task check portal."  }
+    }else {
         return { subject: "Invalid Code", message: "Unknown mail code provided." };
     }
 };
@@ -69,3 +72,4 @@ app.post('/send-mail', async (req, res) => {
 app.listen(5007, () => {
     console.log("Server live on port 5007");
 });
+

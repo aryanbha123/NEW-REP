@@ -2,22 +2,28 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import { Card, CardContent, Typography, Box, CircularProgress } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const {user }  = useSelector(s=>s.auth);
     useEffect(() => {
-        axios.get("http://localhost:5000/member/tasks") // Update with actual API
+        axios.get("http://localhost:5000/member/tasks")
             .then((res) => {
-                setTasks(res.data);
+                // Only keep tasks assigned to the current user
+                console.log(user.id)
+                console.log(res.data )
+                const userTasks = res.data.filter(task => task.assignedTo._id === user.id);
+                setTasks(userTasks);
                 setLoading(false);
             })
             .catch((err) => {
                 console.error("Error fetching tasks:", err);
                 setLoading(false);
             });
-    }, []);
+    }, [user._id]); // make sure useEffect runs when user is loaded
+    
 
     // Count status categories
     const statusCounts = tasks.reduce((acc, task) => {

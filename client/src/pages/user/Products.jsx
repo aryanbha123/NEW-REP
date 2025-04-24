@@ -1,66 +1,85 @@
-import { ShoppingBag, ShoppingCart } from '@mui/icons-material'
-import { Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { ShoppingBag, ShoppingCart, ShowChart } from '@mui/icons-material'
+import { Button } from '@mui/material'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import products from './prod.json'
 import Checkout from './Checkout'
+
 export default function Products() {
   const [cart, setCart] = useState([])
-    const [cartVisibiliy,setCartVisibility] = useState(false)
+  const [cartVisibiliy, setCartVisibility] = useState(false)
+
   const toggleCart = () => {
     setCartVisibility(!cartVisibiliy)
   }
-  // Load cart from localStorage on component mount
+
+  // Load cart from localStorage on mount
   useEffect(() => {
-    let cartItems = JSON.parse(localStorage.getItem('cartt')) || []
-    setCart(cartItems)
+    const storedCart = JSON.parse(localStorage.getItem('cartt')) || []
+    setCart(storedCart)
   }, [])
 
-  // Function to add item to cartt
   const addToCart = (item) => {
-    let cartItems = JSON.parse(localStorage.getItem('cartt')) || []
-
-    // Check if item already exists in cart
-    let existingItem = cartItems.find((cartItem) => cartItem.id === item.id)
+    const updatedCart = [...cart]
+    const existingItem = updatedCart.find((cartItem) => cartItem.id === item.id)
 
     if (existingItem) {
-      // Increment quantity if item exists
       existingItem.quantity += 1
     } else {
-      // Add new item with quantity 1
-      cartItems.push({ ...item, quantity: 1 })
+      updatedCart.push({ ...item, quantity: 1 })
     }
 
-    // Update localStorage and state
-    localStorage.setItem('cartt', JSON.stringify(cartItems))
-    setCart([...cartItems])
+    setCart(updatedCart)
+    localStorage.setItem('cartt', JSON.stringify(updatedCart))
+
+    toast.success(`${item.common_name} added to cart!`)
   }
 
   return (
     <>
-    {
-        cartVisibiliy && <Checkout setCartVisibility={setCartVisibility} cartVisibiliy={cartVisibiliy} items={cart}/>
-    }
-    <header className='flex fixed top-[4px] right-20 z-50 justify-end p-5' >
-            <ShoppingBag onClick={toggleCart}/>
-    </header>
-      <section className='grid gap-5 grid-cols-5'>
+      <ToastContainer position='top-right' autoClose={2000} hideProgressBar={false} newestOnTop closeOnClick />
+
+      {cartVisibiliy && (
+        <Checkout
+          setCartVisibility={setCartVisibility}
+          cartVisibiliy={cartVisibiliy}
+          items={cart}
+        />
+      )}
+
+      <header className='flex fixed top-[4px] right-20 z-50 justify-end p-5'>
+        <div className='relative cursor-pointer' onClick={toggleCart}>
+          <ShoppingBag />
+          {cart.length > 0 && (
+            <span className='absolute -top-2 -right-2 bg-red-600 text-white text-xs px-2 rounded-full'>
+              {cart.length}
+            </span>
+          )}
+        </div>
+      </header>
+
+      <section className='grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-4 6'>
         {products.map((i, key) => (
-          <div className='shadow-md' key={key}>
-            <img className='rounded-sm w-full' src={i?.default_image?.thumbnail} alt='' />
-            <div className='text-gray-700 p-2'>
-              <p className='text-xs'>{i.common_name}</p>
-              <p className='text-sm'>Species: {i.species_epithet}</p>
-              <span className='text-gray-800 text-sm'>Price : { "$" + i.default_image?.license}</span>
+          <div
+            className='shadow-md rounded-lg border hover:shadow-xl transition-all duration-200'
+            key={key}
+          >
+            <img className='rounded-t-lg w-full h-40 object-cover' src={i?.default_image?.thumbnail} alt='' />
+            <div className='text-gray-700 p-3'>
+              <p className='text-sm font-semibold'>{i.common_name}</p>
+              <p className='text-xs'>Species: {i.species_epithet}</p>
+              <p className='text-sm font-medium mt-1'>Price: ${i.default_image?.license}</p>
             </div>
-            <div className='flex gap-3 p-2 items-center'>
-              <Button sx={{ color: '#f1f1f1', background: '#000', fontSize: 12 }}>
+            <div className='flex justify-between items-center px-3 pb-3'>
+              <Button onClick={toggleCart} sx={{ color: '#fff', background: '#000', fontSize: 12 }}>
                 Buy
               </Button>
               <span
-                className='hover:bg-gray-800 shadow-sm transition-all duration-200 cursor-pointer hover:text-white py-2 px-4 rounded-md flex gap-3'
+                className='hover:bg-gray-800 text-sm transition-all duration-200 cursor-pointer hover:text-white py-2 px-3 rounded-md flex items-center gap-2'
                 onClick={() => addToCart(i)}
               >
-                Add to cart <ShoppingCart />
+                Add to cart <ShoppingCart fontSize='small' />
               </span>
             </div>
           </div>

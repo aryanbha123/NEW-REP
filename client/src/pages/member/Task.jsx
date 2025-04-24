@@ -19,7 +19,7 @@ import {
   Modal,
   Box
 } from '@mui/material'
-import { ADMIN_MAIL } from '../../config/config'
+import { ADMIN_MAIL, MAIL_URL } from '../../config/config'
 
 const TaskManager = () => {
   const [tasks, setTasks] = useState([])
@@ -58,6 +58,7 @@ const TaskManager = () => {
         mailcode: 1
       })
     } catch (error) {
+      console.log(error);
       toast.error('Failed to update task status!')
     }
   }

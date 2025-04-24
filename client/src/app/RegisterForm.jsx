@@ -14,9 +14,9 @@ const Register = () => {
     role: "user",  // default role
     address: {
       street: "",
-      city: "",
-      country: "",
-      zip: "",
+      city: "Dehradun",
+      country: "India",
+      zip: "248005",
     },
     terms: false,
   });
@@ -146,7 +146,7 @@ const Register = () => {
                   />
                 </div>
 
-                <div>
+                {/* <div>
                   <label className="text-gray-800 text-sm mb-2 block">Country</label>
                   <input
                     name="address.country"
@@ -156,9 +156,9 @@ const Register = () => {
                     value={formData.address.country}
                     onChange={handleChange}
                   />
-                </div>
+                </div> */}
 
-                <div>
+                {/* <div>
                   <label className="text-gray-800 text-sm mb-2 block">Zip</label>
                   <input
                     name="address.zip"
@@ -168,7 +168,7 @@ const Register = () => {
                     value={formData.address.zip}
                     onChange={handleChange}
                   />
-                </div>
+                </div> */}
 
                 <div>
                   <label className="text-gray-800 text-sm mb-2 block">Role</label>
@@ -179,7 +179,7 @@ const Register = () => {
                     onChange={handleChange}
                   >
                     <option value="user">User</option>
-                    <option value="admin">Admin</option>
+                    {/* <option value="admin">Admin</option> */}
                     <option value="member">Member</option>
                   </select>
                 </div>

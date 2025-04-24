@@ -8,7 +8,7 @@ import Report from './components/Report'
 import Chatbot from './Chatbot'
 import Stepper from './components/Stepper'
 import EnvReportSection from './components/EnvReport'
-import DonationRequest from './components/<DonationRequest'
+import DonationRequest from './components/DonationRequest'
 const Dashboard = () => {
   const data = []
   const [showReport, setShowReport] = useState(false)
@@ -24,16 +24,6 @@ const Dashboard = () => {
       <section className='relative flex flex-col gap-4'>
         <div className='relative bg-white mb-10 flex  items-center w-full h-auto '>
             <EnvReportSection setShowReport={setShowReport}/>
-          {/* <Tooltip title='Create a report'>
-            <Add
-              onClick={() => setShowReport(true)}
-              sx={{
-                fontSize: 30,
-                cursor: 'pointer',
-                color: 'gray'
-              }}
-            />
-          </Tooltip> */}
           <div></div>
         </div>
         <div className='flex py-10 items-center w-full h-auto'>

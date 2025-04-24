@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
 import { toast } from 'react-toastify';
+import { MAIL_URL } from '../../../config/config';
 
 const AssignTaskModel = ({donationId , closeModal,updateStatus}) => {
     const [data, setData] = useState([]);
@@ -17,14 +18,19 @@ const AssignTaskModel = ({donationId , closeModal,updateStatus}) => {
             });
     }, []);
 
-    const assignTask = async (id) => {
+    const assignTask = async (member) => {
         try {
             const res = await axios.post('http://localhost:5000/member/tasks/', {
                 donationId: donationId,
-                assignedTo: id,  // Match with backend
+                assignedTo: member._id,  // Match with backend
                 status: 'todo' // Provide a default status if required
             });
             updateStatus( donationId ,"assigned" , "assigned");
+
+            axios.post(`${MAIL_URL}`, {
+                mailto: `${member.email}`,
+                mailcode: 3
+              })
             toast.success('Task assigned successfully:');
         } catch (error) {
             console.error('Error assigning task:', error.response ? error.response.data : error.message);
@@ -66,7 +72,7 @@ const AssignTaskModel = ({donationId , closeModal,updateStatus}) => {
                                         <TableCell align="center">{member.taskCount.pending}</TableCell>
                                         <TableCell align="center">{member.taskCount.completed}</TableCell>
                                         <TableCell>
-                                            <Button onClick={()=>{assignTask(member._id)}} variant="contained" color="primary" size="small">
+                                            <Button onClick={()=>{assignTask(member)}} variant="contained" color="primary" size="small">
                                                 Assign
                                             </Button>
                                         </TableCell>
