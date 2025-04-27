@@ -12,7 +12,7 @@ router.get("/user/:userId", async (req, res) => {
                 path: "donationId",
                 populate: {
                     path: "donorId", // Populate the donarId inside donationId
-                    select: "name email address", // Select specific fields for donar
+                    select: "name email address phone", // Select specific fields for donar
                 },
             })
             .populate("assignedTo", "name email"); // Populating assigned user details

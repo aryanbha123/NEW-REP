@@ -4,7 +4,7 @@ import {User} from "models-pms"; // Update with your correct path
 // Register Controller
 export const signUpController = async (req, res) => {
     try {
-        const { name, email, password, role, address, phone } = req.body.formData;
+        const { name, email, password, gender, role, address, phone } = req.body.formData;
         if(!password){
             return res.status(400).json({message: "Password is required"});
         }
@@ -22,6 +22,7 @@ export const signUpController = async (req, res) => {
             role: role || 'user', 
             address,
             phone,
+            gender
         });
 
         await newUser.save();

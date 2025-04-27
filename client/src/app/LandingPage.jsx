@@ -7,7 +7,7 @@ import Team from './components/Team';
 import WhyChooseUs from './components/WCU';
 import Footer from './components/Footer';
 
-const LandingPage = () => {
+function LandingPage(){
     return (
         <>
             <Header/>

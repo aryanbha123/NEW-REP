@@ -61,6 +61,7 @@ export const getProfile = async (req, res) => {
                 createdAt: user.createdAt,
                 address: user.address,
                 phone: user.phone,
+                gender:user.gender
             }
         });
     } catch (error) {

@@ -30,7 +30,7 @@ const Donations = () => {
             toast.success('Donation submitted successfully!');
             setDonation({
                 donorId: user?.id || '',
-                donationType: '',
+                donationType: 'seed',
                 itemName: '',
                 quantity: '',
                 expiryDate: '',

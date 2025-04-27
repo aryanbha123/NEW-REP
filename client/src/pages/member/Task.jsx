@@ -92,7 +92,7 @@ const TaskManager = () => {
                 <strong>Assigned To</strong>
               </TableCell>
               <TableCell>
-                <strong>Address</strong>
+                <strong>Phone</strong>
               </TableCell>
               <TableCell>
                 <strong>Status</strong>
@@ -110,7 +110,7 @@ const TaskManager = () => {
               <TableRow key={task._id}>
                 <TableCell>{task._id}</TableCell>
                 <TableCell>{task.assignedTo?.name || 'Unassigned'}</TableCell>
-                <TableCell>{task.address || 'N/A'}</TableCell>
+                <TableCell>{task?.donationId?.donorId?.phone|| 'N/A'}</TableCell>
                 <TableCell>{task.status}</TableCell>
                 <TableCell>
                   <FormControl fullWidth>

@@ -11,6 +11,7 @@ const Register = () => {
     email: "",
     password: "",
     phone: "",
+    gender:"male",
     role: "user",  // default role
     address: {
       street: "",
@@ -109,6 +110,21 @@ const Register = () => {
                     onChange={handleChange}
                   />
                 </div>
+                <div>
+                  <label className="text-gray-800 text-sm mb-2 block">Gender</label>
+                  <select
+                    name="gender"
+                    type="text"
+                    required
+                    className="w-full text-sm text-gray-800 border border-gray-300 pl-4 py-3 rounded-lg outline-embg-emerald-400 -600"
+                    placeholder="Enter password"
+                    value={formData.gender}
+                    onChange={handleChange}
+                  >
+                    <option value={"male"} >Male</option>
+                    <option value={"female"} >Female</option>
+                    </select>
+                </div>
 
                 <div>
                   <label className="text-gray-800 text-sm mb-2 block">Phone</label>
@@ -179,7 +195,7 @@ const Register = () => {
                     onChange={handleChange}
                   >
                     <option value="user">User</option>
-                    {/* <option value="admin">Admin</option> */}
+                    <option value="admin">Admin</option>
                     <option value="member">Member</option>
                   </select>
                 </div>
