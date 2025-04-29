@@ -58,7 +58,7 @@ const TaskManager = () => {
         mailcode: 1
       })
     } catch (error) {
-      console.log(error);
+      console.log(error)
       toast.error('Failed to update task status!')
     }
   }
@@ -100,6 +100,7 @@ const TaskManager = () => {
               <TableCell>
                 <strong>Update Status</strong>
               </TableCell>
+
               <TableCell>
                 <strong>Info</strong>
               </TableCell>
@@ -110,7 +111,9 @@ const TaskManager = () => {
               <TableRow key={task._id}>
                 <TableCell>{task._id}</TableCell>
                 <TableCell>{task.assignedTo?.name || 'Unassigned'}</TableCell>
-                <TableCell>{task?.donationId?.donorId?.phone|| 'N/A'}</TableCell>
+                <TableCell>
+                  {task?.donationId?.donorId?.phone || 'N/A'}
+                </TableCell>
                 <TableCell>{task.status}</TableCell>
                 <TableCell>
                   <FormControl fullWidth>
@@ -177,6 +180,10 @@ const TaskManager = () => {
                 {selectedTask.donationId?.donorId?.address?.city || 'N/A'}{' '}
                 <br />
                 {selectedTask.donationId?.donorId?.address?.zip || 'N/A'} <br />
+              </Typography>
+              <Typography>
+                {' '}
+                <strong>Task : Collect Donation</strong>
               </Typography>
             </>
           ) : (
