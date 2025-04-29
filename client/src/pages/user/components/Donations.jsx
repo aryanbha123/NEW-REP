@@ -11,7 +11,7 @@ const Donations = () => {
     const [loading, setLoading] = useState(false);
     const [donation, setDonation] = useState({
         donorId: user?.id || '',
-        donationType: '',
+        donationType: 'seed',
         itemName: '',
         quantity: '',
         expiryDate: '',
