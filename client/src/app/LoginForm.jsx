@@ -97,7 +97,7 @@ const SignInForm = () => {
               </div>
 
               <div className="text-sm">
-                <a href="#" className="text-emerald-500 -600 hover:underline font-semibold">
+                <a href="/forget-pass" className="text-emerald-500 -600 hover:underline font-semibold">
                   Forgot your password?
                 </a>
               </div>

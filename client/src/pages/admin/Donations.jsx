@@ -14,9 +14,11 @@ const Donation = () => {
     const [filter, setFilter] = useState("all"); // Filter state
     const [donationId, setDonationId] = useState('');
     const [showAssignTask, setShowAssignTask] = useState(false);
-    const assignTask = (id) => {
+    const [userMail , setUserMail]  = useState(null)
+    const assignTask = (id,mail) => {
         setDonationId(id);
         setShowAssignTask(true);
+        setUserMail(mail);
     }
     // Fetch all donations
     useEffect(() => {
@@ -87,7 +89,7 @@ const Donation = () => {
                                     <TableCell sx={{display:"flex",gap:2}} >
                                         {donation.status === "pending" && donation.type !== "money" ? (
                                             <>
-                                                <CustomButton callBack={()=>{assignTask(donation._id)}} Label={"Assign Task"} />
+                                                <CustomButton callBack={()=>{assignTask(donation._id,donation?.donorId?.email)}} Label={"Assign Task"} />
                                                 <CustomButton callBack={()=>{updateStatus(donation._id, "rejected")}} Label={"Reject"} />
                                             </>
                                         ) : (
@@ -102,7 +104,7 @@ const Donation = () => {
             </TableContainer>
             {
                 showAssignTask &&
-                <AssignTaskModel updateStatus={updateStatus} closeModal={setShowAssignTask} donationId={donationId} />
+                <AssignTaskModel userMail={userMail} updateStatus={updateStatus} closeModal={setShowAssignTask} donationId={donationId} />
             }
         </>
     );

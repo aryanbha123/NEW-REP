@@ -1,7 +1,7 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-
+import feedbackRoutes from './feedback.js';
 
 dotenv.config();
 
@@ -31,7 +31,10 @@ const mailCode = (i) => {
         return { subject: "Task Updated", message: "Admin has been notified for the task." };
     } else if ( i == 4) {
         return { subject : "User has been allocated a taskk" , message: "Admin has assigned you a task check portal."  }
-    }else {
+    }else if(i==6){
+        return { subject : "User your donation req has been assigned" , message: "User your donation req has been assigned  , we'll reach you soon"  }
+    }
+    else {
         return { subject: "Invalid Code", message: "Unknown mail code provided." };
     }
 };
@@ -69,6 +72,8 @@ app.post('/send-mail', async (req, res) => {
     }
 });
 
+
+app.use('/feedback' , feedbackRoutes)
 app.listen(5007, () => {
     console.log("Server live on port 5007");
 });

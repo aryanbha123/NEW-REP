@@ -16,7 +16,7 @@ const App = () => {
   
   const AuthPage = React.lazy(() => import('./app/Auth'));
   const LandingPage = React.lazy(() => import('./app/LandingPage'));
-
+  const ForgetPass = React.lazy(() => import('./app/ForgetPass'))
   // User Components 
   const UserLayout = React.lazy(() => import('./pages/user/components/Layout'));
   const UserDashboard = React.lazy(() => import('./pages/user/Dashboard'));
@@ -24,6 +24,7 @@ const App = () => {
   const UserDonations = React.lazy(() => import('./pages/user/DonationPage'));
   const UserReports = React.lazy(() => import('./pages/user/ReportsPage'));
   const UserProducts = React.lazy(() => import('./pages/user/Products'))
+  const UserFeedback = React.lazy(() => import('./pages/user/FeedbackForm'));
   // Member Routes Components
   const MemberLayout = React.lazy(() => import('./pages/member/components/Layout'));
   const MenmberTasks = React.lazy(()=> import('./pages/member/Task'));
@@ -41,6 +42,7 @@ const App = () => {
       <Suspense fallback={<></>}>
         <BrowserRouter>
           <Routes>
+            <Route path='/forget-pass' element={<ForgetPass/>} />
             <Route path='/' element={<><LandingPage /></>} />
             <Route path='/auth' element={<UserRoutes><AuthPage /></UserRoutes>} />
             {/* User Routes */}
@@ -52,6 +54,7 @@ const App = () => {
               <Route path='reports' element={<UserLayout><UserReports/></UserLayout>} />
               <Route path='products' element={<UserLayout><UserProducts/></UserLayout>}/>
               <Route path='checkout' element={<UserLayout><UserProducts/></UserLayout>}/>
+              <Route path='feedback' element={<UserLayout><UserFeedback/></UserLayout>}/>
             </Route>
             {/* Member Routes */}
             <Route path='/member' element={<RoleRoutes requiredRole={"member"} />}>
